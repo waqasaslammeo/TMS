@@ -1,0 +1,34 @@
+﻿@using TMStesting.Common
+<div class="col-md-12" id="chatboard">
+    @{
+        var chat = ViewBag.Chat == null ? new List<ChatPanelitem>() : ViewBag.Chat as List<ChatPanelitem>;
+    }
+
+    @foreach (var c in chat)
+    {
+        if (c.isMine)
+        {
+            <div title="@Html.Raw(c.commentDate)" class="triangle-isosceleso">
+                @Html.Raw(c.comment);
+                @if (c.attachment != "")
+                {
+                    <a style="float: left;" href="@Html.Raw(c.attachment)"><img style="width: 25px;" src="/Content/downloadIcon.png"></a>
+                }
+            </div>
+        }
+        else
+        {
+            <div title="@Html.Raw(c.commentDate)" class="triangle-isosceles">
+                @Html.Raw(c.comment);
+                @if (c.attachment != "")
+                {
+                    <a style="float: left;" href="@Html.Raw(c.attachment)"><img style="width: 25px;" src="/Content/downloadIcon.png"></a>
+                }
+            </div>
+        }
+    }
+
+
+
+</div>
+

@@ -1,0 +1,14 @@
+﻿.control {
+    height: 30px !important;
+    padding-left: 35px;
+    margin-top: 10px;
+    border: none;
+    z-index: -999;
+    margin-left: -3px;
+    border-top: none !important;
+}
+
+.controlIcon {
+        margin-top: -8px;
+    margin-left: 3px;
+}

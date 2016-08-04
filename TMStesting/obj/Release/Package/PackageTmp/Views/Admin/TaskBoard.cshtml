@@ -1,0 +1,155 @@
+﻿@using TMS.Models
+@using TMStesting.Common
+@using TMStesting.Controllers
+
+@{
+    ViewBag.Title = "TaskBoard";
+    Layout = "~/Views/Shared/AdminPanal.cshtml";
+}
+
+
+@{
+
+    var task = ViewBag.assignment == null ? new Assignment() : ViewBag.assignment as Assignment;
+    
+    
+    
+    
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="container-fluid">
+            <div id="div-chatcontainer" class="row" style="height: 450px; overflow: scroll;">
+               
+            </div>
+            <div class="row">
+                @using (Html.BeginForm("Chat", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                {
+                    <div class="col-md-12">
+                        <input type="text" name="msg" class="form-control" style="width: 427px; float: left; margin-right: 10px;">
+                        <input type="hidden" value="@Html.Raw(task.Id)" name="TaskId2"/>
+                        <input type="submit" value="Send" class="btn btn-success" style="float: left;">
+                        <input type="file" name="filesCollection">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box-content">
+            @using (Html.BeginForm("UpdateTask", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" id="AssignmentId" name="Id" placeholder="Assignment ID" value="@Html.Raw(task.Id)">
+              @Html.Raw("New schedule date:")
+                <div style="margin-bottom: 20px; margin-top: 20px;">
+                    <div class="form-group" style="padding: 0px !important; margin: -15px 0px -15px 0px !important;">
+                        <input type="date" class="form-control" data-provide="datepicker" name="AssignmentDate" value="@Html.Raw(task.AssignmentDate)" id="AssignmentDate1" placeholder="From Date">
+                    </div>
+                </div>
+               
+                <div style="clear: both;"></div>
+                <div class="form-group" style="padding: 0px !important; margin: -15px 0px -15px 0px !important;">
+                    <label for="AssignmentTo"></label>
+                    <select class="form-group chosen-select" name="AssignedTo" id="AssignmentTo" multiple style="width: 100%; margin: 20px 0px 0px -4px;" data-placeholder="Assigned To">
+                        <option value="-1">Assigned To</option>
+                        @foreach (var s in ViewBag.userList as List<User>)
+                        {
+                            var usrs = task.AssignedTo.Split(',');
+                            
+                            if (usrs.Contains(s.Id.ToString()))
+                            {
+                                 <option selected="selected" value="@Html.Raw(s.Id)">@Html.Raw(s.FirstName) @Html.Raw(s.LastName)</option>
+                            }
+                            else
+                            {
+                            <option value="@Html.Raw(s.Id)">@Html.Raw(s.FirstName) @Html.Raw(s.LastName)</option>
+                            }
+                            
+                        }
+                    </select>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="form-group" style="padding: 0px !important; margin-top: 20px !important;">
+                    <select class="form-control" name="Status">
+                        <option value="-1">Status</option>
+                        @foreach (var s in ViewBag.statusList as List<TMStesting.Common.TaskStatus>)
+                        {
+                            if (s.Id == Convert.ToInt32(task.Status))
+                            {
+                                <option selected="selected" value="@Html.Raw(s.Id)">@Html.Raw(s.Status)</option>
+                            }
+                            else
+                            {
+                                 <option value="@Html.Raw(s.Id)">@Html.Raw(s.Status)</option>
+                            }
+                        }
+                    </select>
+                </div>
+    <br/>
+                <input id="txtTaskId" type="hidden" value="@Html.Raw(task.Id)" name="TaskId"/>
+                <input type="submit" class="btn btn-default" value="Send" style="margin: 0px 0px 0px 220px;">
+            }
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<style>
+        /* Bubble with an isoceles triangle
+    ------------------------------------------ */
+
+    .triangle-isosceles {
+        position: relative;
+        padding: 15px;
+        margin: 1em 0 3em;
+        color: #FFFFFF;
+        background: #f3961c;
+        border-radius: 10px;
+        background: linear-gradient(top, #f9d835, #f3961c);
+    }
+
+            /* creates triangle */
+        .triangle-isosceles:after {
+            content: "";
+            display: block; /* reduce the damage in FF3.0 */
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 0;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #f3961c transparent;
+            transform: rotate(180deg);
+        }
+
+
+
+    .triangle-isosceleso {
+        position: relative;
+        padding: 15px;
+        margin: 1em 0 3em;
+        color: #FFFFFF;
+        background: #468847;
+        border-radius: 10px;
+        background: linear-gradient(top, #f9d835, #468847);
+    }
+
+        /* creates triangle */
+    .triangle-isosceleso:before {
+        content: "";
+        display: block; /* reduce the damage in FF3.0 */
+        position: absolute;
+        bottom: -15px;
+        left: 87%;
+        width: 0;
+        border-width: 15px 15px 0;
+        border-style: solid;
+        border-color: #468847 transparent;
+    }
+</style>

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/AdminPanal.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="box col-md-12" style="padding-top:0px;">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-calendar"></i> Calendar</h2>
+                <div class="box-icon">
+                    @*<a href="#" class="btn btn-setting btn-round btn-default">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="box-content" style="padding: 18px;">
+                <div class="row" id="calendar">
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+<style>
+
+    .day-box {
+        border: 1px solid;
+        border-color: lightgray;
+    }
+    .box {
+        padding-bottom: 71px;
+        padding-top: 71px;
+        color: gray;
+        text-align: center;
+        font-style: normal;
+        font-weight: bolder;
+        margin: auto;
+        padding-bottom: 71px;
+    }
+
+    .fc-event-inner {
+        background-color: orange !important;
+    }
+
+</style>
